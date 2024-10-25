@@ -171,7 +171,6 @@ def unscented_transform(sigmas, Wm, Wc, noise_cov=None, mean_func=None, residual
     y = residual_func(sigmas[k], x)
     P += Wc[k] * np.outer(y, y)
 
-  breakpoint()
   if noise_cov is not None:
     P += noise_cov
 
@@ -210,30 +209,30 @@ if __name__ == '__main__':
   dt = 0.1
   timesteps = 200
 
-  # landmarks = np.array([[5, 10], [10, 5], [15, 15]])
+  landmarks = np.array([[5, 10], [10, 5], [15, 15]])
 
-  landmarks = np.array([[5, 10], [10, 5], [15, 15], [20, 5],[0, 30], [50, 30], [40, 10]])
+  # landmarks = np.array([[5, 10], [10, 5], [15, 15], [20, 5],[0, 30], [50, 30], [40, 10]])
 
-  # commands = [np.array([1.1, .01])] * timesteps
+  commands = [np.array([1.1, .01])] * timesteps
 
-  # accelerate from a stop
-  commands = [[v, .0] for v in np.linspace(0.001, 1.1, 30)]
-  commands.extend([commands[-1]]*50)
+  # # accelerate from a stop
+  # commands = [[v, .0] for v in np.linspace(0.001, 1.1, 30)]
+  # commands.extend([commands[-1]]*50)
 
-  # turn left
-  v = commands[-1][0]
-  commands.extend(turn(v, 0, 2, 15))
-  commands.extend([commands[-1]]*100)
+  # # turn left
+  # v = commands[-1][0]
+  # commands.extend(turn(v, 0, 2, 15))
+  # commands.extend([commands[-1]]*100)
 
-  #turn right
-  commands.extend(turn(v, 2, -2, 15))
-  commands.extend([commands[-1]]*200)
+  # #turn right
+  # commands.extend(turn(v, 2, -2, 15))
+  # commands.extend([commands[-1]]*200)
 
-  commands.extend(turn(v, -2, 0, 15))
-  commands.extend([commands[-1]]*150)
+  # commands.extend(turn(v, -2, 0, 15))
+  # commands.extend([commands[-1]]*150)
 
-  commands.extend(turn(v, 0, 1, 25))
-  commands.extend([commands[-1]]*100)
+  # commands.extend(turn(v, 0, 1, 25))
+  # commands.extend([commands[-1]]*100)
 
   step = 10
   wheelbase = 0.5
